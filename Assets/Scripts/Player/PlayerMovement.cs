@@ -1,8 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Tilemaps;
-using Unity.Mathematics;
-using UnityEngine.InputSystem;
 
 public class PlayerGridMovement : MonoBehaviour
 {
@@ -17,6 +15,8 @@ public class PlayerGridMovement : MonoBehaviour
 
     private Vector3Int currentCell;
     private bool isMoving = false;
+    public bool IsFree => !isMoving;
+
 
     void Start()
     {
@@ -29,44 +29,26 @@ public class PlayerGridMovement : MonoBehaviour
             Debug.LogWarning("Attenzione: Il Player non è sopra una tile valida al via!");
         }
 
-        //Centra il player sulla cella
+
         transform.position = _grid.GetCellCenterWorld(currentCell);
     }
 
-    void Update()
+    public void TryMove(Vector3Int direction)
     {
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Vector3Int mouseCell = _grid.WorldToCell(mouseWorldPos);
-        Debug.Log("Il mouse punta alla cella: " + mouseCell);
         if (isMoving) return;
 
-        Vector2 input = PlayerInputHandler.Instance.MovementInput;
+        Vector3Int targetCell = currentCell + direction;
 
-        if (input != Vector2.zero)
+        if (_walkLayer.HasTile(targetCell))
         {
-            Vector3Int direction = Vector3Int.zero;
-
-            if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
-                direction.x = input.x > 0 ? 1 : -1;
-            else
-                direction.y = input.y > 0 ? 1 : -1;
-
-            if (direction != Vector3Int.zero)
-            {
-                Vector3Int targetCell = currentCell + direction;
-
-                // CONTROLLO
-                if (_walkLayer.HasTile(targetCell))
-                {
-                    ExecuteJump(direction);
-                }
-                else
-                {
-                    Debug.Log("Muro o vuoto! Non posso andare in " + targetCell);
-                }
-            }
+            ExecuteJump(direction);
+        }
+        else
+        {
+            Debug.Log("Muro o vuoto! Non posso andare in " + targetCell);
         }
     }
+
 
     void ExecuteJump(Vector3Int direction)
     {

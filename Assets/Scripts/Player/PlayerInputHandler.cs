@@ -22,7 +22,6 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 MovementInput { get; private set; }
     public Vector2 RotationInput { get; private set; }
 
-    public static PlayerInputHandler Instance;
 
     void Awake()
     {
@@ -37,14 +36,6 @@ public class PlayerInputHandler : MonoBehaviour
         rotationAction = MapReference.FindAction(rotation);
         SubscribeActionValueToInputEvent();
 
-
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
         MapReference.Enable();
     }
     private void SubscribeActionValueToInputEvent()
