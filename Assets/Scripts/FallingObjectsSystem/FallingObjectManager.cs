@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEngine.Tilemaps;
 
 public class FallingObjectManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class FallingObjectManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Grid _grid;
+    [SerializeField] private Tilemap _warningTileMap;
+    [SerializeField] private TileBase _waringTile;
     [SerializeField] private GameObject _fallingObjectPrefab;
 
     [Header("Patterns")]
@@ -20,10 +23,29 @@ public class FallingObjectManager : MonoBehaviour
         Instance = this;
     }
 
-    public void ChooseRandomPattern()
+    private void ChooseRandomPattern()
     {
         _currentPattern = _patterns[Random.Range(0, _patterns.Count)];
         Debug.Log("Pattern scelto: " + _currentPattern.name);
+    }
+    private void ShowWarningTiles()
+    {
+        foreach (Vector3Int cell in _currentPattern.cells)
+        {
+            _warningTileMap.SetTile(cell, _waringTile);
+        }
+    }
+    private void ClearTiles()
+    {
+        foreach (Vector3Int cell in _currentPattern.cells)
+        {
+            _warningTileMap.SetTile(cell, null);
+        }
+    }
+    public void InitializePattern()
+    {
+        ChooseRandomPattern();
+        ShowWarningTiles();
     }
 
     public void ExecutePattern()
@@ -48,6 +70,7 @@ public class FallingObjectManager : MonoBehaviour
                     Destroy(obj);
                 });
         }
+        ClearTiles();
     }
 
     private void CheckDamage(Vector3Int cell)

@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using System.Collections.Generic;
 using System.Collections;
 
 public class TurnController : MonoBehaviour
@@ -71,7 +70,7 @@ public class TurnController : MonoBehaviour
 
         // Collisioni
         CollisionResolver.Instance.Resolve();
-
+        FallingObjectManager.Instance.ExecutePattern();
 
         // Reset turno
         _countdown = _inputWindow;
@@ -85,5 +84,8 @@ public class TurnController : MonoBehaviour
 
         foreach (var player in PlayerManager.Instance.Players)
             player.InputQueue.StartCollecting();
+
+        FallingObjectManager.Instance.InitializePattern();
+
     }
 }

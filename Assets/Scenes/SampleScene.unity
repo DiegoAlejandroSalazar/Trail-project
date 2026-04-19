@@ -652,7 +652,7 @@ Transform:
   m_GameObject: {fileID: 453914206}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.29, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1516,7 +1516,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1839735485 &1076924073
 Tilemap:
@@ -2632,7 +2632,7 @@ TilemapRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -3593,6 +3593,7 @@ GameObject:
   - component: {fileID: 1961603054}
   - component: {fileID: 1961603053}
   - component: {fileID: 1961603055}
+  - component: {fileID: 1961603057}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -3643,7 +3644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f045ffe05d591e469ab62fab72769cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerController
-  _inputWindow: 2
+  _inputWindow: 3
   _timerText: {fileID: 328945130}
 --- !u!114 &1961603055
 MonoBehaviour:
@@ -3669,6 +3670,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 026ad1eac2889b646a016179b52ebeb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+--- !u!114 &1961603057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961603050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ab45945ca953d4aaf0e064ed9cb666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FallingObjectManager
+  _grid: {fileID: 58923841}
+  _warningTileMap: {fileID: 2106512259}
+  _waringTile: {fileID: 11400000, guid: a331992d1be2c2e41b7170a12f4741c9, type: 2}
+  _fallingObjectPrefab: {fileID: 3137510993752140816, guid: 14cb218422e705a409fe106a7c916ca2, type: 3}
+  _patterns:
+  - {fileID: 11400000, guid: 9e527625f5bcf604f8fc06554bfe2f13, type: 2}
+  - {fileID: 11400000, guid: 296ff6a6af80d5e4f9da4eab305c431f, type: 2}
 --- !u!1 &2106512255
 GameObject:
   m_ObjectHideFlags: 0
@@ -3816,7 +3836,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 0, y: 0, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileAnchor: {x: 0, y: 0, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
