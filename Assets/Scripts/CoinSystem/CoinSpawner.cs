@@ -3,17 +3,21 @@ using UnityEngine.Tilemaps;
 
 public class CoinSpawner : MonoBehaviour
 {
+    public static CoinSpawner Instance;
     [Header("References")]
     [SerializeField] private Grid _grid;
     [SerializeField] private Tilemap _walkableLayer;
     [SerializeField] private Transform _coin;
-    [SerializeField] private Transform _player;
 
     [Header("Spawn Settings")]
-    [SerializeField] private int _maxAttempts = 50; // da vede se mette cosi 
+    [SerializeField] private int maxAttempts = 50;
 
     private Vector3Int _lastSpawnCell;
 
+    void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         SpawnCoin();
@@ -21,19 +25,32 @@ public class CoinSpawner : MonoBehaviour
 
     public void SpawnCoin()
     {
-        for (int i = 0; i < _maxAttempts; i++)
+        StopCoinMovement();
+
+        for (int i = 0; i < maxAttempts; i++)
         {
             Vector3Int randomCell = GetRandomWalkableCell();
 
-            // evita di spawnare sulla cella del player
-            Vector3Int playerCell = _grid.WorldToCell(_player.position);
-            if (randomCell == playerCell)
+            bool cellOccupied = false;
+
+            foreach (var p in PlayerManager.Instance.Players)
+            {
+                Vector3Int playerCell = _grid.WorldToCell(p.Movement.transform.position);
+                if (playerCell == randomCell)
+                {
+                    cellOccupied = true;
+                    break;
+                }
+            }
+
+            if (cellOccupied)
                 continue;
 
             _lastSpawnCell = randomCell;
 
             Vector3 worldPos = _grid.GetCellCenterWorld(randomCell);
             _coin.position = worldPos;
+            StartCoinMovement(worldPos);
             return;
         }
 
@@ -49,10 +66,25 @@ public class CoinSpawner : MonoBehaviour
 
         Vector3Int cell = new(x, y, 0);
 
-
         if (_walkableLayer.HasTile(cell))
             return cell;
 
-        return GetRandomWalkableCell(); 
+        return GetRandomWalkableCell();
     }
+    public bool IsCoinAtCell(Vector3Int cell)
+    {
+        return cell == _lastSpawnCell;
+    }
+    private void StopCoinMovement()
+    {
+        CoinMovement movement = _coin.GetComponent<CoinMovement>();
+        movement.StopFloating();
+
+    }
+    private void StartCoinMovement(Vector3 WordPosition)
+    {
+        CoinMovement movement = _coin.GetComponent<CoinMovement>();
+        movement.StartFloating(WordPosition);
+    }
+
 }

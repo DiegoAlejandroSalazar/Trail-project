@@ -49,6 +49,8 @@ public class PlayerInputQueue : MonoBehaviour
 
     private void ReadInput()
     {
+        if (IsExecuting) return;
+        
         Vector2 input = _playerInputHandler.MovementInput;
 
         if (_lastInput == Vector2.zero && input != Vector2.zero)

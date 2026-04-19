@@ -3,7 +3,7 @@ using TMPro;
 using System.Collections.Generic;
 using System.Collections;
 
-public class TimerController : MonoBehaviour
+public class TurnController : MonoBehaviour
 {
     [Header("Timer Settings")]
     [SerializeField] private float _inputWindow = 2f;
@@ -12,15 +12,13 @@ public class TimerController : MonoBehaviour
     private float _countdown;
     private bool _collecting = false;
 
-    [SerializeField] private List<PlayerInputQueue> players = new();
-
     void Start()
     {
         _countdown = _inputWindow;
         _collecting = true;
 
-        foreach (PlayerInputQueue p in players)
-            p.StartCollecting();
+        foreach (var player in PlayerManager.Instance.Players)
+            player.InputQueue.StartCollecting();
     }
 
     void Update()
@@ -31,39 +29,37 @@ public class TimerController : MonoBehaviour
         _timerText.text = _countdown.ToString("0.0");
 
         if (_countdown <= 0)
-        {
             EndWindow();
-        }
     }
 
     private void EndWindow()
     {
         _collecting = false;
         _timerText.text = "GO!";
-
         StartCoroutine(StartExecution());
     }
 
     private IEnumerator StartExecution()
     {
-        foreach (PlayerInputQueue p in players)
-            p.PrepareExecution();
-
-        //Aspetta un frame per sincronizzazione perfetta
+        // Prepara i player
+        foreach (var player in PlayerManager.Instance.Players)
+            player.InputQueue.PrepareExecution();
         yield return null;
 
-        foreach (PlayerInputQueue p in players)
-            p.StartExecution();
+        // Avvia l’esecuzione simultanea
+        foreach (var player in PlayerManager.Instance.Players)
+            player.InputQueue.StartExecution();
 
+        // Aspetta che tutti abbiano finito
         bool allDone = false;
 
         while (!allDone)
         {
             allDone = true;
 
-            foreach (PlayerInputQueue p in players)
+            foreach (var player in PlayerManager.Instance.Players)
             {
-                if (p.IsExecuting)
+                if (player.InputQueue.IsExecuting)
                 {
                     allDone = false;
                     break;
@@ -73,10 +69,21 @@ public class TimerController : MonoBehaviour
             yield return null;
         }
 
+        // Collisioni
+        CollisionResolver.Instance.Resolve();
+
+
+        // Reset turno
         _countdown = _inputWindow;
         _collecting = true;
 
-        foreach (PlayerInputQueue p in players)
-            p.StartCollecting();
+        foreach (var player in PlayerManager.Instance.Players)
+        {
+            player.Trail.ClearTrail();
+            player.Movement.ResetMoveIndex();
+        }
+
+        foreach (var player in PlayerManager.Instance.Players)
+            player.InputQueue.StartCollecting();
     }
 }
