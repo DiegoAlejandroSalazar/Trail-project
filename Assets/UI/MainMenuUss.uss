@@ -1,0 +1,75 @@
+:root {
+    -unity-font-definition: url("project://database/Assets/Font/TrueType%20(.ttf)/Robtronika-Regular.ttf?fileID=12800000&guid=42827bf54aa6e834bbb09d3f1832411c&type=3#Robtronika-Regular");
+    -unity-font-style: normal;
+}
+
+.header {
+    font-size: 120px;
+    visibility: visible;
+    display: flex;
+    align-self: auto;
+    margin-top: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+    margin-left: 100px;
+    background-color: rgba(255, 255, 255, 0);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-image: url("project://database/Assets/UI/UiAsset/Sci-fi%20UI.png?fileID=-7003093608280903&guid=ab4224c0c65b41045a6d56adb896ce7e&type=3#Sci-fi UI_22");
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 5px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    -unity-font-style: normal;
+    align-items: auto;
+    transition-property: opacity, text-shadow;
+    transition-duration: 0.15s, 0.15s;
+    transition-timing-function: ease-in-out, ease-in-out;
+}
+
+.button {
+    width: 400px;
+    height: 100px;
+    justify-content: flex-start;
+    align-self: center;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 60px;
+    margin-top: 30px;
+    background-image: url("project://database/Assets/UI/UiAsset/Sci-fi%20UI.png?fileID=473198353265575034&guid=ab4224c0c65b41045a6d56adb896ce7e&type=3#Sci-fi UI_9");
+    background-color: rgba(0, 0, 0, 0);
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in-out-cubic;
+    -unity-text-auto-size: best-fit 10px 100px;
+    -unity-text-align: middle-center;
+    white-space: nowrap;
+    text-overflow: clip;
+    -unity-text-generator: advanced;
+}
+
+.button:hover {
+    scale: 1.1 1.1;
+    background-image: url("project://database/Assets/UI/UiAsset/Sci-fi%20UI.png?fileID=473198353265575034&guid=ab4224c0c65b41045a6d56adb896ce7e&type=3#Sci-fi UI_9");
+    -unity-background-image-tint-color: rgb(188, 188, 188);
+}
+
+.glow-text {
+    color: white;
+    text-shadow: 0 0 12px rgb(0, 255, 255);
+    animation: flicker 1.5s infinite;
+}

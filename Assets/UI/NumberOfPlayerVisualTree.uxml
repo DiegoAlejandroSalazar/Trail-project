@@ -1,0 +1,13 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MainMenuUss.uss?fileID=7433441132597879392&amp;guid=58c81cff2f97ba549a228934953bb0b8&amp;type=3#MainMenuUss"/>
+    <ui:VisualElement name="Container" style="flex-grow: 1;">
+        <ui:Label text="Chose number of players" name="HeaderText" class="header" style="align-self: center; font-size: 70px; -unity-font-style: normal; -unity-text-align: upper-center; white-space: pre-wrap; text-overflow: clip;"/>
+        <ui:GroupBox style="align-self: center;">
+            <ui:Button text="1 player" name="OnePlayerButton" class="button"/>
+            <ui:Button text="2  player" name="TwoPlayerButton" class="button"/>
+            <ui:Button text="3 player" name="ThreePlayerButton" class="button"/>
+            <ui:Button text="4 player" name="FourPlayerButton" class="button"/>
+            <ui:Button text="Back" name="BackButton" class="button" style="background-image: url(&quot;project://database/Assets/UI/UiAsset/Sci-fi%20UI.png?fileID=473198353265575034&amp;guid=ab4224c0c65b41045a6d56adb896ce7e&amp;type=3#Sci-fi UI_9&quot;);"/>
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>

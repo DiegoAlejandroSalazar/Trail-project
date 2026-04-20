@@ -15,16 +15,20 @@ public class PlayerGridMovement : MonoBehaviour
     private int _moveIndex = 0;
 
     [Header("Movement Settings")]
+
     [Tooltip("Durata singolo movimento")]
     [SerializeField] private float _moveDuration = 0.3f; // Durata del salto
-    [Tooltip("Altezza singolo movimento")]
-    [SerializeField] private float _jumpPower = 0.5f;    // Altezza del salto visivo
 
     private Vector3Int currentCell;
     private bool isMoving = false;
     public bool IsFree => !isMoving;
 
+    private Animator _animator;
 
+    void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
     void Start()
     {
         Initialize();
@@ -45,6 +49,12 @@ public class PlayerGridMovement : MonoBehaviour
         }
         transform.position = _grid.GetCellCenterWorld(currentCell);
     }
+    public void ForceCell(Vector3Int cell)
+    {
+        currentCell = cell;
+        transform.position = _grid.GetCellCenterWorld(cell);
+    }
+
     public void TryMove(Vector3Int direction)
     {
         if (isMoving) return;
@@ -76,9 +86,13 @@ public class PlayerGridMovement : MonoBehaviour
         _moveIndex++;
 
         // animazione
-        transform.DOJump(targetWorldPos, _jumpPower, 1, _moveDuration)
-            .SetEase(Ease.OutQuad)
-            .OnComplete(() => isMoving = false);
+        _animator.SetBool("IsMoving", true);
+        _animator.SetTrigger("Moving");
+        transform.DOMove(targetWorldPos, _moveDuration).SetEase(Ease.OutQuad).OnComplete(() =>
+        {
+            isMoving = false;
+            _animator.SetBool("IsMoving", false);
+        });
 
         //controllo moneta
         if (CoinSpawner.Instance.IsCoinAtCell(currentCell))
