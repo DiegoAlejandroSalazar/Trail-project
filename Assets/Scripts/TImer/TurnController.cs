@@ -4,20 +4,24 @@ using System.Collections;
 
 public class TurnController : MonoBehaviour
 {
+    [Header("UiReferences")]
+    [SerializeField] private TMP_Text _timerText;   
     [Header("Timer Settings")]
-    [SerializeField] private float _inputWindow = 2f;
-    [SerializeField] private TMP_Text _timerText;
+    [SerializeField] private float _tranistionTime = 1f;
 
     private float _countdown;
     private bool _collecting = false;
 
     void Start()
     {
-        _countdown = _inputWindow;
+        _countdown = GameManager.Instance.GetInputWindow();
         _collecting = true;
+        GameUIManager.Instance.UpdateUi();
 
         foreach (var player in PlayerManager.Instance.Players)
             player.InputQueue.StartCollecting();
+
+        FallingObjectManager.Instance.InitializePattern();
     }
 
     void Update()
@@ -72,9 +76,13 @@ public class TurnController : MonoBehaviour
         CollisionResolver.Instance.Resolve();
         FallingObjectManager.Instance.ExecutePattern();
 
+        yield return new WaitForSeconds(_tranistionTime);
+
         // Reset turno
-        _countdown = _inputWindow;
+        _countdown = GameManager.Instance.GetInputWindow();
         _collecting = true;
+        GameManager.Instance.NextTurn();
+        GameUIManager.Instance.UpdateUi();
 
         foreach (var player in PlayerManager.Instance.Players)
         {

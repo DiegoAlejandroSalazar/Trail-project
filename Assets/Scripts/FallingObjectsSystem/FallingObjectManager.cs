@@ -12,21 +12,22 @@ public class FallingObjectManager : MonoBehaviour
     [SerializeField] private Tilemap _warningTileMap;
     [SerializeField] private TileBase _waringTile;
     [SerializeField] private GameObject _fallingObjectPrefab;
-
-    [Header("Patterns")]
-    [SerializeField] private List<FallingObjectsPatternSO> _patterns;
-
     private FallingObjectsPatternSO _currentPattern;
-
     void Awake()
     {
         Instance = this;
     }
-
-    private void ChooseRandomPattern()
+    private void ChoosePatternFromDifficulty()
     {
-        _currentPattern = _patterns[Random.Range(0, _patterns.Count)];
-        Debug.Log("Pattern scelto: " + _currentPattern.name);
+        _currentPattern = GameManager.Instance.GetPattern();
+
+        if (_currentPattern.RandomPosition)
+        {
+            _currentPattern.RandomPositionCount = GameManager.Instance.GetRandomCellCount();
+            _currentPattern.RebuildCells();
+        }
+
+        //Debug.Log($" Pattern scelto: {_currentPattern.name}");
     }
     private void ShowWarningTiles()
     {
@@ -44,9 +45,10 @@ public class FallingObjectManager : MonoBehaviour
     }
     public void InitializePattern()
     {
-        ChooseRandomPattern();
+        ChoosePatternFromDifficulty();
         ShowWarningTiles();
     }
+
 
     public void ExecutePattern()
     {

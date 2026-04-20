@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4152c5eb5f465c34a80218146014f408, type: 3}
-  m_Name: Pattern5
+  m_Name: PatternLinee
   m_EditorClassIdentifier: Assembly-CSharp::FallingObjectsPatternSO
-  patternName: Quadrati
+  patternName: linee
   RandomPosition: 0
   RandomPositionCount: 0
   cells:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 2, z: 0}
+  - {x: 0, y: 3, z: 0}
+  - {x: 0, y: 4, z: 0}
+  - {x: 0, y: 5, z: 0}
+  - {x: 0, y: 6, z: 0}
+  - {x: 0, y: 7, z: 0}
   - {x: 0, y: 8, z: 0}
   - {x: 0, y: 9, z: 0}
-  - {x: 1, y: 0, z: 0}
-  - {x: 1, y: 1, z: 0}
-  - {x: 1, y: 8, z: 0}
-  - {x: 1, y: 9, z: 0}
-  - {x: 4, y: 4, z: 0}
-  - {x: 4, y: 5, z: 0}
-  - {x: 5, y: 4, z: 0}
-  - {x: 5, y: 5, z: 0}
-  - {x: 8, y: 0, z: 0}
-  - {x: 8, y: 1, z: 0}
-  - {x: 8, y: 8, z: 0}
-  - {x: 8, y: 9, z: 0}
   - {x: 9, y: 0, z: 0}
   - {x: 9, y: 1, z: 0}
+  - {x: 9, y: 2, z: 0}
+  - {x: 9, y: 3, z: 0}
+  - {x: 9, y: 4, z: 0}
+  - {x: 9, y: 5, z: 0}
+  - {x: 9, y: 6, z: 0}
+  - {x: 9, y: 7, z: 0}
   - {x: 9, y: 8, z: 0}
   - {x: 9, y: 9, z: 0}

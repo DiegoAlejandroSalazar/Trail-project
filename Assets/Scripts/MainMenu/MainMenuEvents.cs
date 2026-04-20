@@ -73,7 +73,7 @@ public class MainMenuEvents : MonoBehaviour
     private void StartGame(int players)
     {
         Debug.Log(players);
-        GameManager.PlayerCount = players;
+        GameManager.Instance.PlayerCount = players;
         //SceneManager.LoadScene("GameScene");
     }
     #endregion

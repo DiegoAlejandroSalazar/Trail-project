@@ -27,7 +27,7 @@ public class FallingObjectsPatternSO : ScriptableObject
                 int x = Random.Range(0, 10);
                 int y = Random.Range(0, 10);
 
-                Vector3Int cell = new Vector3Int(x, y, 0);
+                Vector3Int cell = new(x, y, 0);
 
                 // evita duplicati
                 if (!list.Contains(cell))

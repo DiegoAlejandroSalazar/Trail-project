@@ -23,6 +23,42 @@ public class PlayerManager : MonoBehaviour
     {
         Players.RemoveAll(p => p.GameObject == player);
     }
+    public void PlayerDied(GameObject player)
+    {
+        var data = Players.Find(p => p.GameObject == player);
+        if (data == null) return;
+
+        data.IsAlive = false;
+
+        data.GameObject.SetActive(false);
+
+        Debug.Log($"{player.name} è morto!");
+
+        CheckForWinner();
+    }
+    private void CheckForWinner()
+    {
+        int aliveCount = 0;
+        PlayerData lastAlive = null;
+
+        foreach (var p in Players)
+        {
+            if (p.IsAlive)
+            {
+                aliveCount++;
+                lastAlive = p;
+            }
+        }
+
+        if (aliveCount <= 1)
+        {
+            Debug.Log("GAME OVER — abbiamo un vincitore!");
+
+            GameUIManager.Instance.ShowEndScreen(lastAlive);
+        }
+    }
+
+
 }
 
 public class PlayerData
@@ -33,6 +69,7 @@ public class PlayerData
     public PlayerInputQueue InputQueue;
     public IDamageable Damageable;
     public PlayerWallet PlayerWallet;
+    public bool IsAlive = true;
 
     public PlayerData(GameObject go)
     {

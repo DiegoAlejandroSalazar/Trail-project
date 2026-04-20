@@ -11,7 +11,6 @@ public class PlayerInputQueue : MonoBehaviour
     private PlayerInputHandler _playerInputHandler;
 
     [Header("Queue Settings")]
-    [SerializeField] private int _maxBufferSize = 5;
     [SerializeField] private float _actionInterval = 0.3f;
 
     private readonly Queue<Vector3Int> actionQueue = new();
@@ -55,7 +54,7 @@ public class PlayerInputQueue : MonoBehaviour
 
         if (_lastInput == Vector2.zero && input != Vector2.zero)
         {
-            if (actionQueue.Count < _maxBufferSize)
+            if (actionQueue.Count < GameManager.Instance.GetBufferSize())
             {
                 Vector3Int dir = Vector3Int.zero;
 

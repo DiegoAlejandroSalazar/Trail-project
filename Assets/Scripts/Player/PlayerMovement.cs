@@ -14,6 +14,10 @@ public class PlayerGridMovement : MonoBehaviour
     private PlayerTrail _trail;
     private int _moveIndex = 0;
 
+    [Header("Spawn Settings")]
+    [SerializeField] private Vector3 spawnOffset = new(0, 0.25f, 0);
+
+
     [Header("Movement Settings")]
 
     [Tooltip("Durata singolo movimento")]
@@ -47,13 +51,17 @@ public class PlayerGridMovement : MonoBehaviour
         {
             Debug.LogWarning("Attenzione: Il Player non è sopra una tile valida al via!");
         }
-        transform.position = _grid.GetCellCenterWorld(currentCell);
+
+        transform.position = _grid.GetCellCenterWorld(currentCell) + spawnOffset;
     }
+
     public void ForceCell(Vector3Int cell)
     {
         currentCell = cell;
-        transform.position = _grid.GetCellCenterWorld(cell);
+        transform.position = _grid.GetCellCenterWorld(cell) + spawnOffset;
     }
+
+
 
     public void TryMove(Vector3Int direction)
     {
@@ -97,7 +105,6 @@ public class PlayerGridMovement : MonoBehaviour
         //controllo moneta
         if (CoinSpawner.Instance.IsCoinAtCell(currentCell))
         {
-            Debug.Log($"{gameObject.name} ha raccolto la moneta!");
             GetComponent<PlayerWallet>().AddCoin(1);
             CoinSpawner.Instance.SpawnCoin();
         }

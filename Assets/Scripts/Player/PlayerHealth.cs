@@ -23,7 +23,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         if (_lives <= 0)
         {
-            Debug.Log($"{gameObject.name} GAME OVER");
+            //Debug.Log($"{gameObject.name} GAME OVER");
+            PlayerManager.Instance.PlayerDied(gameObject);
 
         }
     }
