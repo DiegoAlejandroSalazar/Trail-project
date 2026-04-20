@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
+using System;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -60,13 +62,14 @@ public class PlayerManager : MonoBehaviour
 
 
 }
-
 public class PlayerData
 {
     public GameObject GameObject;
+    public PlayerInputHandler PlayerInputHandler;
     public PlayerGridMovement Movement;
     public PlayerTrail Trail;
     public PlayerInputQueue InputQueue;
+    public PlayerHealth Health;
     public IDamageable Damageable;
     public PlayerWallet PlayerWallet;
     public bool IsAlive = true;
@@ -74,10 +77,26 @@ public class PlayerData
     public PlayerData(GameObject go)
     {
         GameObject = go;
+        PlayerInputHandler = go.GetComponent<PlayerInputHandler>();
         Movement = go.GetComponent<PlayerGridMovement>();
         Trail = go.GetComponent<PlayerTrail>();
         InputQueue = go.GetComponent<PlayerInputQueue>();
         Damageable = go.GetComponent<IDamageable>();
+        Health = go.GetComponent<PlayerHealth>();
         PlayerWallet = go.GetComponent<PlayerWallet>();
     }
+    public void InitializeComponents(Vector3Int startCell, Tilemap walkMap, Tilemap trailMap, Color assignedColor)
+    {
+        if (Movement != null)
+            Movement.InitializeFromManager(startCell, walkMap, assignedColor);
+
+        if (Trail != null)
+            Trail.Init(trailMap, assignedColor);
+        
+        if(InputQueue != null)
+            InputQueue.Init(Movement, PlayerInputHandler);
+
+
+    }
+
 }

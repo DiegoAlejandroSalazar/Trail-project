@@ -3,10 +3,12 @@ using UnityEngine.UIElements;
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(UIDocument))]
 public class HeaderEffects : MonoBehaviour
 {
     private UIDocument _doc;
     private List<Label> _headers = new();
+
     [Header("Flicker Settings")]
     [SerializeField] private bool _running = true;
     [SerializeField] private float _opacity = 0.8f;
@@ -17,33 +19,57 @@ public class HeaderEffects : MonoBehaviour
     private void Awake()
     {
         _doc = GetComponent<UIDocument>();
-        RefreshHeaders();
+        //RefreshHeaders();
         StartCoroutine(FlickerRoutine());
     }
     public void RefreshHeaders()
     {
-        _headers.Clear();
-        _headers.AddRange(_doc.rootVisualElement.Query<Label>(className: "header").ToList());
+        if (_doc == null) _doc = GetComponent<UIDocument>();
 
+        if (_doc.rootVisualElement == null) return;
+
+        _headers.Clear();
+        var foundHeaders = _doc.rootVisualElement.Query<Label>(className: "header").ToList();
+
+        if (foundHeaders != null)
+        {
+            _headers.AddRange(foundHeaders);
+        }
+
+        // foreach (Label label in _headers)
+        // {
+        //     Debug.Log("Header trovato: " + label.name);
+        // }
     }
 
     private IEnumerator FlickerRoutine()
     {
         while (_running)
         {
-            foreach (var h in _headers)
+            if (_headers.Count == 0)
             {
-                h.style.opacity = _opacity;
-                h.style.unityTextOutlineColor = new StyleColor(_color);
+                yield return new WaitForSeconds(0.5f);
+                continue;
             }
-            yield return new WaitForSeconds(UnityEngine.Random.Range(0.05f, 0.15f));
 
             foreach (var h in _headers)
             {
+                if (h == null) continue; 
+                h.style.opacity = _opacity;
+                h.style.unityTextOutlineColor = new StyleColor(_color);
+            }
+            yield return new WaitForSeconds(Random.Range(0.05f, 0.15f));
+
+            foreach (var h in _headers)
+            {
+                if (h == null) continue;
                 h.style.opacity = 1f;
                 h.style.unityTextOutlineColor = new StyleColor(Color.black);
             }
-            yield return new WaitForSeconds(UnityEngine.Random.Range(-_flickerTime, _flickerTime));
+
+            // Assicurati che _flickerTime sia positivo.
+            float wait = Mathf.Max(0.05f, Random.Range(0.05f, _flickerTime));
+            yield return new WaitForSeconds(wait);
         }
     }
 }

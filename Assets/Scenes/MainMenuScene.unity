@@ -129,9 +129,9 @@ GameObject:
   m_Component:
   - component: {fileID: 817684416}
   - component: {fileID: 817684415}
-  - component: {fileID: 817684418}
   - component: {fileID: 817684417}
   - component: {fileID: 817684419}
+  - component: {fileID: 817684418}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged

@@ -5,7 +5,7 @@ public class PlayerWallet : MonoBehaviour
 {
     public int Coins { get; private set; } = 0;
 
-    [SerializeField] private TMP_Text _coinText;
+    [HideInInspector] public TMP_Text CoinText;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class PlayerWallet : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (_coinText != null)
-            _coinText.text = Coins.ToString();
+        if (CoinText != null)
+            CoinText.text = Coins.ToString();
     }
 }

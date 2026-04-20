@@ -9,44 +9,39 @@ public class PlayerInputHandler : MonoBehaviour
 
     [Space]
     [Header("Action Map Name Reference")]
-    [SerializeField] private string ActionMapName = "Player";
+    [SerializeField] private string ActionMapName = "Player_";
     [Space]
 
     [Header("Action Name Reference")]
     [SerializeField] private string movement = "Move";
-    [SerializeField] private string rotation = "Look";
- 
+
     private InputAction movementAction;
-    private InputAction rotationAction;
 
     public Vector2 MovementInput { get; private set; }
-    public Vector2 RotationInput { get; private set; }
 
 
-    void Awake()
+    public void Initialize(int playerIndex)
     {
-        InputActionMap MapReference = playerControls.FindActionMap(ActionMapName);
+        string mapName = ActionMapName + playerIndex;
+        InputActionMap map = playerControls.FindActionMap(mapName);
 
-        if (MapReference == null)
+        if (map == null)
         {
-            Debug.LogError("Action Map NOT FOUND: " + ActionMapName);
+            Debug.LogError($"Mappa non trovata: {mapName}");
+            return;
         }
 
-        movementAction = MapReference.FindAction(movement);
-        rotationAction = MapReference.FindAction(rotation);
+        movementAction = map.FindAction(movement);
+
         SubscribeActionValueToInputEvent();
 
-        MapReference.Enable();
+        map.Enable();
     }
+
     private void SubscribeActionValueToInputEvent()
     {
         movementAction.performed += inputInfo => MovementInput = inputInfo.ReadValue<Vector2>();
         movementAction.canceled += inputInfo => MovementInput = Vector2.zero;
-
-        rotationAction.performed += inputInfo => RotationInput = inputInfo.ReadValue<Vector2>();
-        rotationAction.canceled += inputInfo => RotationInput = Vector2.zero;
-
-
     }
     private void OnEnable()
     {
@@ -56,11 +51,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         yield return null;
 
-        playerControls.FindActionMap(ActionMapName).Enable();
+        movementAction?.Enable();
     }
-    void OnDisable()
+    private void OnDisable()
     {
-        playerControls.FindActionMap(ActionMapName).Disable();
+        movementAction?.Disable();
     }
 
 }

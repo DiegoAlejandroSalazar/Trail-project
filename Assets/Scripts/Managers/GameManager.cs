@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,17 +13,34 @@ public class GameManager : MonoBehaviour
     }
     public static GameManager Instance;
 
-    [Header("References")]
+    [Header("walkable References")]
     [SerializeField] private Grid _grid;
+    [SerializeField] private Tilemap _walkLayer;
+
+    [Header("trail References")]
+    [SerializeField] private Tilemap _trailLayer;
+    [SerializeField] private TileBase _trailTile;
+    [Header("Ui References")]
+    [SerializeField] private Transform _uiContainer;
+    [SerializeField] private GameObject _playerUIPrefab;
+    [Header("Player References")]
     [SerializeField] private GameObject _playerPrefab;
 
     [Header("Difficulty settings")]
     [SerializeField] private GameDifficultySettings _settings;
 
+    [SerializeField]
+    private List<Color> _playerColors = new()
+    {
+        Color.red,
+        Color.blue,
+        Color.green,
+        Color.yellow
+    };
 
-
-    public int PlayerCount { get; set; }
+    public static int PlayerCount { get; set; } = 2;
     public int CurrentTurn { get; private set; } = 1;
+    [HideInInspector] public bool GameFinish = false;
 
     public static readonly Vector3Int[] SpawnPositions = new Vector3Int[]
     {
@@ -31,14 +49,25 @@ public class GameManager : MonoBehaviour
         new(0, 9, 0),   // Alto sinistra
         new(9, 9, 0)    // Alto destra
     };
+    private static readonly Vector2[] UIAnchors = new Vector2[]
+    {
+        new(0, 1), // Player 0: Alto Sinistra
+        new(1, 1), // Player 1: Alto Destra
+        new(0, 0), // Player 2: Basso Sinistra
+        new(1, 0)  // Player 3: Basso Destra
+    };
+    private static readonly Vector2[] UIPivots = new Vector2[]
+    {
+        new(0, 1), // Alto Sinistra
+        new(1, 1), // Alto Destra
+        new(0, 0), // Basso Sinistra
+        new(1, 0)  // Basso Destra
+    };
 
     void Awake()
     {
         Instance = this;
-    }
-    void Start()
-    {
-        //SpawnPlayers(2);
+        SpawnPlayers(PlayerCount);
     }
     public void NextTurn()
     {
@@ -120,12 +149,41 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < playerCount; i++)
         {
-            GameObject player = Instantiate(_playerPrefab);
+            Color assignedColor = _playerColors[i % _playerColors.Count];
 
-            Vector3 worldPos = _grid.GetCellCenterWorld(SpawnPositions[i]);
-            player.transform.position = worldPos;
+            GameObject playerObj = Instantiate(_playerPrefab);
 
-            player.GetComponent<PlayerGridMovement>().ForceCell(SpawnPositions[i]);
+            playerObj.name = $"Player_{i + 1}";
+
+            PlayerManager.Instance.RegisterPlayer(playerObj);
+
+            PlayerManager.Instance.Players[i].PlayerInputHandler.Initialize(i);
+
+            PlayerManager.Instance.Players[i].InitializeComponents(SpawnPositions[i], _walkLayer, _trailLayer, assignedColor);
+
+            GameObject uiObj = Instantiate(_playerUIPrefab, _uiContainer);
+
+            RectTransform uiRect = uiObj.GetComponent<RectTransform>();
+            SetUIAnchor(uiRect, i);
+
+            if (uiObj.TryGetComponent<PlayerUIDisplay>(out var uiDisplay))
+            {
+                uiDisplay.SetUpUi(PlayerManager.Instance.Players[i], assignedColor);
+            }
         }
+    }
+    private void SetUIAnchor(RectTransform rect, int index)
+    {
+        Vector2 anchor = UIAnchors[index];
+        rect.anchorMin = anchor;
+        rect.anchorMax = anchor;
+        rect.pivot = UIPivots[index];
+
+        rect.anchoredPosition = Vector2.zero;
+
+        float margin = 20f;
+        float offsetX = (anchor.x == 0) ? margin : -margin;
+        float offsetY = (anchor.y == 0) ? margin : -margin;
+        rect.anchoredPosition = new Vector2(offsetX, offsetY);
     }
 }

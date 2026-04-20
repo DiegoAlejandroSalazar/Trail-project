@@ -31,10 +31,11 @@ public class FallingObjectManager : MonoBehaviour
     }
     private void ShowWarningTiles()
     {
-        foreach (Vector3Int cell in _currentPattern.cells)
-        {
-            _warningTileMap.SetTile(cell, _waringTile);
-        }
+        if (GameManager.Instance.GameFinish) return;
+            foreach (Vector3Int cell in _currentPattern.cells)
+            {
+                _warningTileMap.SetTile(cell, _waringTile);
+            }
     }
     private void ClearTiles()
     {
@@ -83,7 +84,7 @@ public class FallingObjectManager : MonoBehaviour
 
             if (playerCell == cell)
             {
-                Debug.Log($"{p.GameObject.name} colpito da oggetto caduto!");
+                Debug.Log($"{p.GameObject.name} colpito da oggetto caduto! posizione {cell}");
                 p.Damageable?.TakeDamage(1, cell);
             }
         }

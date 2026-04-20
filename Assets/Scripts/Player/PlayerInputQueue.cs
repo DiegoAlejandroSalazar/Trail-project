@@ -6,8 +6,8 @@ using System.Collections.Generic;
 public class PlayerInputQueue : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private PlayerGridMovement _movement;
-    [SerializeField] private TMP_Text _debugQueueText;
+    [HideInInspector] public TMP_Text DebugQueueText;
+    private PlayerGridMovement _movement;
     private PlayerInputHandler _playerInputHandler;
 
     [Header("Queue Settings")]
@@ -19,11 +19,11 @@ public class PlayerInputQueue : MonoBehaviour
 
     private Vector2 _lastInput = Vector2.zero;
 
-    void Start()
+    public void Init(PlayerGridMovement movement, PlayerInputHandler handler)
     {
-        _playerInputHandler = GetComponent<PlayerInputHandler>();
+        _movement = movement;
+        _playerInputHandler = handler;
     }
-
     void Update()
     {
         if (_collecting)
@@ -49,7 +49,7 @@ public class PlayerInputQueue : MonoBehaviour
     private void ReadInput()
     {
         if (IsExecuting) return;
-        
+
         Vector2 input = _playerInputHandler.MovementInput;
 
         if (_lastInput == Vector2.zero && input != Vector2.zero)
@@ -100,7 +100,7 @@ public class PlayerInputQueue : MonoBehaviour
     {
         if (actionQueue.Count == 0)
         {
-            _debugQueueText.text = "";
+            DebugQueueText.text = "";
             return;
         }
 
@@ -113,6 +113,6 @@ public class PlayerInputQueue : MonoBehaviour
             else if (a.y == -1) s += "↓ ";
         }
 
-        _debugQueueText.text = s;
+        DebugQueueText.text = s;
     }
 }

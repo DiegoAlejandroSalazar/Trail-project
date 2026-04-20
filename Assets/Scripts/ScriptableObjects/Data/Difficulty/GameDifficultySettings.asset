@@ -23,16 +23,15 @@ MonoBehaviour:
   mediumBuffer: 5
   hardBuffer: 6
   insaneBuffer: 7
-  easyRandomCells: 8
+  easyRandomCells: 7
   mediumRandomCells: 20
   hardRandomCells: 60
   insaneRandomCells: 75
   easyPatterns:
+  - {fileID: 11400000, guid: aa82511beb3440741b0c49cf461e1ead, type: 2}
   - {fileID: 11400000, guid: 296ff6a6af80d5e4f9da4eab305c431f, type: 2}
   - {fileID: 11400000, guid: fc90d344edf03754fb7b2fa2554a2402, type: 2}
   - {fileID: 11400000, guid: 416546b8386d86948a840b2ff6c11643, type: 2}
-  - {fileID: 11400000, guid: 9172d9befdfd2884f8fc1e3e54d7de45, type: 2}
-  - {fileID: 11400000, guid: aa82511beb3440741b0c49cf461e1ead, type: 2}
   mediumPatterns:
   - {fileID: 11400000, guid: 2f60e8ee2377c0649a2b46312d5f6317, type: 2}
   - {fileID: 11400000, guid: 6691abf0edaf57c48a35d1c18466d40e, type: 2}

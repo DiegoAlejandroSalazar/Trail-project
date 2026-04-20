@@ -75,7 +75,7 @@ public class CoinSpawner : MonoBehaviour
     {
         return cell == _lastSpawnCell;
     }
-    private void StopCoinMovement()
+    public void StopCoinMovement()
     {
         CoinMovement movement = _coin.GetComponent<CoinMovement>();
         movement.StopFloating();

@@ -2,26 +2,16 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Tilemaps;
 
-[RequireComponent(typeof(PlayerTrail))]
-[RequireComponent(typeof(PlayerWallet))]
 public class PlayerGridMovement : MonoBehaviour
 {
     [Header("Grid Reference")]
     [SerializeField] private Grid _grid;
-    [SerializeField] private Tilemap _walkLayer;
-
-    [Header("Trail Reference")]
+    private Tilemap _walkLayer;
     private PlayerTrail _trail;
     private int _moveIndex = 0;
 
-    [Header("Spawn Settings")]
-    [SerializeField] private Vector3 spawnOffset = new(0, 0.25f, 0);
-
-
     [Header("Movement Settings")]
-
-    [Tooltip("Durata singolo movimento")]
-    [SerializeField] private float _moveDuration = 0.3f; // Durata del salto
+    [SerializeField] private float _moveDuration = 0.3f;
 
     private Vector3Int currentCell;
     private bool isMoving = false;
@@ -31,78 +21,89 @@ public class PlayerGridMovement : MonoBehaviour
 
     void Awake()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
     }
-    void Start()
+
+    public void InitializeFromManager(Vector3Int startCell, Tilemap walkMap, Color color)
     {
+        _walkLayer = walkMap;
+        _grid = _walkLayer.layoutGrid;
+
+        currentCell = startCell;
+
+        transform.position = _walkLayer.GetCellCenterWorld(startCell);
+
+        // Applica il colore allo SpriteRenderer nel figlio
+        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.color = color;
+        }
+
         Initialize();
     }
     private void Initialize()
     {
-        PlayerManager.Instance.RegisterPlayer(gameObject);
-
         _trail = GetComponent<PlayerTrail>();
 
-        Vector3 startingPos = transform.position;
 
-        currentCell = _grid.WorldToCell(startingPos);
+        Vector3 pos = transform.position;
+        currentCell = _walkLayer.WorldToCell(new Vector3(pos.x, pos.y, 0));
 
         if (!_walkLayer.HasTile(currentCell))
         {
-            Debug.LogWarning("Attenzione: Il Player non è sopra una tile valida al via!");
+            currentCell = _walkLayer.LocalToCell(transform.localPosition);
         }
 
-        transform.position = _grid.GetCellCenterWorld(currentCell) + spawnOffset;
-    }
+        if (!_walkLayer.HasTile(currentCell))
+        {
+            Debug.LogError($"ERRORE: Player a {transform.position} non trova tile in {currentCell}. Controlla la Z!");
+        }
 
+        transform.position = _walkLayer.GetCellCenterWorld(currentCell);
+    }
     public void ForceCell(Vector3Int cell)
     {
         currentCell = cell;
-        transform.position = _grid.GetCellCenterWorld(cell) + spawnOffset;
+        transform.position = _walkLayer.GetCellCenterWorld(cell);
     }
-
-
 
     public void TryMove(Vector3Int direction)
     {
         if (isMoving) return;
-
         Vector3Int targetCell = currentCell + direction;
 
         if (_walkLayer.HasTile(targetCell))
         {
             ExecuteJump(direction);
         }
-        else
-        {
-            Debug.Log("Muro o vuoto! Non posso andare in " + targetCell);
-        }
     }
-
 
     void ExecuteJump(Vector3Int direction)
     {
         isMoving = true;
+        currentCell += direction;
 
-        Vector3Int targetCell = currentCell + direction;
-        currentCell = targetCell;
+        Vector3 targetWorldPos = _walkLayer.GetCellCenterWorld(currentCell);
+        Debug.Log($"{gameObject.name} traccia cella {currentCell}");
 
-        Vector3 targetWorldPos = _grid.GetCellCenterWorld(targetCell);
 
-        //aggiunge step per il trail
-        _trail.AddStep(targetCell, _moveIndex);
+        _trail.AddStep(currentCell, _moveIndex);
         _moveIndex++;
 
-        // animazione
-        _animator.SetBool("IsMoving", true);
-        _animator.SetTrigger("Moving");
+        if (_animator != null)
+        {
+            _animator.SetBool("IsMoving", true);
+            _animator.SetTrigger("Moving");
+        }
+
         transform.DOMove(targetWorldPos, _moveDuration).SetEase(Ease.OutQuad).OnComplete(() =>
         {
             isMoving = false;
-            _animator.SetBool("IsMoving", false);
+            if (_animator != null) _animator.SetBool("IsMoving", false);
         });
 
-        //controllo moneta
+        // Logica monete
         if (CoinSpawner.Instance.IsCoinAtCell(currentCell))
         {
             GetComponent<PlayerWallet>().AddCoin(1);

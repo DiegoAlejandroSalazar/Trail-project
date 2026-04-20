@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,24 +24,28 @@ public class MainMenuEvents : MonoBehaviour
         LoadMainMenu();
     }
 
-#region MainMenu
+    #region MainMenu    
     private void LoadMainMenu()
     {
         _document.visualTreeAsset = _mainMenuTree;
 
         // Aggiorna header effects
-        GetComponent<HeaderEffects>().RefreshHeaders();
-
+        StartCoroutine(WaitAndRefresh());
         // Registra bottoni
-        var root = _document.rootVisualElement;
+        VisualElement root = _document.rootVisualElement;
 
-        var playButton = root.Q<Button>("PlayButton");
+        Button playButton = root.Q<Button>("PlayButton");
         playButton.RegisterCallback<ClickEvent>(OnPlayClick);
 
-        var exitButton = root.Q<Button>("ExitButton");
+        Button exitButton = root.Q<Button>("ExitButton");
         exitButton.RegisterCallback<ClickEvent>(OnExitClick);
     }
+    private IEnumerator WaitAndRefresh()
+    {
+        yield return new WaitForEndOfFrame();
 
+        GetComponent<HeaderEffects>().RefreshHeaders();
+    }
     private void OnPlayClick(ClickEvent click)
     {
         _audioSource.Play();
@@ -73,8 +78,8 @@ public class MainMenuEvents : MonoBehaviour
     private void StartGame(int players)
     {
         Debug.Log(players);
-        GameManager.Instance.PlayerCount = players;
-        //SceneManager.LoadScene("GameScene");
+        GameManager.PlayerCount = players;
+        SceneManager.LoadScene(1);
     }
     #endregion
 }
