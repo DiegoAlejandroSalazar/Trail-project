@@ -25,10 +25,10 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack",
+                    "name": "DeleteAction",
                     "type": "Button",
                     "id": "6c2ab1b8-8984-453a-af3d-a3c78ae1679a",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -217,18 +217,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -239,7 +239,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -250,7 +250,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -261,7 +261,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -272,7 +272,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -455,10 +455,10 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack",
+                    "name": "DeleteAction",
                     "type": "Button",
                     "id": "208eceaa-b363-446a-a45e-62daf9d23bf0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -647,18 +647,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "d9ccd70d-5912-4891-8368-7fd8842946cb",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -669,7 +669,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -680,7 +680,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -691,7 +691,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -702,7 +702,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -885,10 +885,10 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack",
+                    "name": "DeleteAction",
                     "type": "Button",
                     "id": "0995aa80-7f1a-446d-9924-1a725bc24b59",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -1077,18 +1077,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "168e743e-dc4d-449f-a966-ae9d3418112a",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1099,7 +1099,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1110,7 +1110,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1121,7 +1121,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1132,7 +1132,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1315,7 +1315,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack",
+                    "name": "DeleteAction",
                     "type": "Button",
                     "id": "10c207a0-b5c5-4b92-b453-47b3b09158f3",
                     "expectedControlType": "",
@@ -1507,18 +1507,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "03fcc512-8ef8-4fa8-aadc-bdae279b5704",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1529,7 +1529,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1540,7 +1540,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1551,7 +1551,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1562,7 +1562,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Attack",
+                    "action": "DeleteAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

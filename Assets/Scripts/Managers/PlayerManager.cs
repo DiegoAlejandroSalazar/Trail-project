@@ -34,9 +34,11 @@ public class PlayerManager : MonoBehaviour
 
         data.IsAlive = false;
 
-        data.GameObject.SetActive(false);
+        data.Trail.ClearTrail();
+        UnregisterPlayer(data.GameObject);
+        Destroy(data.GameObject);
 
-        Debug.Log($"{player.name} è morto!");
+        //Debug.Log($"{player.name} è morto!");
 
         CheckForWinner();
     }

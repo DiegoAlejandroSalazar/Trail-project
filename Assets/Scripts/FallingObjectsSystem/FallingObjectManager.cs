@@ -57,23 +57,23 @@ public class FallingObjectManager : MonoBehaviour
     {
         if (_currentPattern == null)
             return;
-            
+
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlaySfx("AttaccoMeteore", false, 0.5f);
 
         foreach (var cell in _currentPattern.cells)
         {
             Vector3 worldPos = _grid.GetCellCenterWorld(cell);
-
-            // Spawn oggetto che cade
             GameObject obj = Instantiate(_fallingObjectPrefab, worldPos + Vector3.up * 5f, _fallingObjectPrefab.transform.rotation);
 
-            // Animazione caduta
             obj.transform
                 .DOMove(worldPos, 0.5f)
                 .SetEase(Ease.InQuad)
+                .SetTarget(obj) 
                 .OnComplete(() =>
                 {
+                    if (obj == null) return;
+
                     CheckDamage(cell);
                     Destroy(obj);
                 });
@@ -83,13 +83,17 @@ public class FallingObjectManager : MonoBehaviour
 
     private void CheckDamage(Vector3Int cell)
     {
-        foreach (var p in PlayerManager.Instance.Players)
+        for (int i = 0; i < PlayerManager.Instance.Players.Count; i++)
         {
+            PlayerData p = PlayerManager.Instance.Players[i];
+
+            if (p == null || p.Movement == null || !p.IsAlive) continue;
+
             Vector3Int playerCell = _grid.WorldToCell(p.Movement.transform.position);
 
             if (playerCell == cell)
             {
-                Debug.Log($"{p.GameObject.name} colpito da oggetto caduto! posizione {cell}");
+                Debug.Log($"{p.GameObject.name} colpito!");
                 p.Damageable?.TakeDamage(1, cell);
             }
         }

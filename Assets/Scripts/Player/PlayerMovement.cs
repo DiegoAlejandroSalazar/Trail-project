@@ -57,7 +57,7 @@ public class PlayerGridMovement : MonoBehaviour
 
         if (!_walkLayer.HasTile(currentCell))
         {
-            Debug.LogError($"ERRORE: Player a {transform.position} non trova tile in {currentCell}. Controlla la Z!");
+            Debug.LogError($"ERRORE: Player a {transform.position} non trova tile in {currentCell}.");
         }
 
         transform.position = _walkLayer.GetCellCenterWorld(currentCell);
@@ -85,7 +85,7 @@ public class PlayerGridMovement : MonoBehaviour
         currentCell += direction;
 
         Vector3 targetWorldPos = _walkLayer.GetCellCenterWorld(currentCell);
-        Debug.Log($"{gameObject.name} traccia cella {currentCell}");
+        //Debug.Log($"{gameObject.name} traccia cella {currentCell}");
 
 
         _trail.AddStep(currentCell, _moveIndex);

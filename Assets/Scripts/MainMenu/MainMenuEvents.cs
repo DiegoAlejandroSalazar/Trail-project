@@ -82,7 +82,7 @@ public class MainMenuEvents : MonoBehaviour
         AudioManager.Instance.PlaySfx("ButtonClicked", false, 1f);
         AudioManager.Instance.PlaySfx("SceneTransition", false, 1f);
 
-        Debug.Log(players);
+        //Debug.Log($"number of players : {players}");
         GameManager.PlayerCount = players;
         SceneManager.LoadScene(1);
     }

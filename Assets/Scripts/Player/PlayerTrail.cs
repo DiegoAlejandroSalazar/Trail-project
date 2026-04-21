@@ -21,7 +21,7 @@ public class PlayerTrail : MonoBehaviour
         trail.Add((cell, index));
         _trailTilemap.SetTile(cell, _trailTile);
         _trailTilemap.SetColor(cell, _trailColor);
-        Debug.Log($"{gameObject.name} traccia cella {cell}");
+        //Debug.Log($"{gameObject.name} traccia cella {cell}");
     }
 
     public List<(Vector3Int cell, int index)> GetTrail()

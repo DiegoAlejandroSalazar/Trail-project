@@ -14,10 +14,13 @@ public class PlayerInputHandler : MonoBehaviour
 
     [Header("Action Name Reference")]
     [SerializeField] private string movement = "Move";
+    [SerializeField] private string deleteAction = "DeleteAction";
 
     private InputAction movementAction;
+    private InputAction deleteActionAction;
 
     public Vector2 MovementInput { get; private set; }
+    public bool DeleateActionInput { get; private set; } // Variabile per il tasto singolo
 
 
     public void Initialize(int playerIndex)
@@ -32,6 +35,7 @@ public class PlayerInputHandler : MonoBehaviour
         }
 
         movementAction = map.FindAction(movement);
+        deleteActionAction = map.FindAction(deleteAction);
 
         SubscribeActionValueToInputEvent();
 
@@ -42,6 +46,9 @@ public class PlayerInputHandler : MonoBehaviour
     {
         movementAction.performed += inputInfo => MovementInput = inputInfo.ReadValue<Vector2>();
         movementAction.canceled += inputInfo => MovementInput = Vector2.zero;
+
+        deleteActionAction.started += ctx => DeleateActionInput = true;
+        deleteActionAction.canceled += ctx => DeleateActionInput = false;
     }
     private void OnEnable()
     {
@@ -56,6 +63,10 @@ public class PlayerInputHandler : MonoBehaviour
     private void OnDisable()
     {
         movementAction?.Disable();
+    }
+    private void LateUpdate()
+    {
+        DeleateActionInput = false;
     }
 
 }

@@ -27,7 +27,13 @@ public class PlayerInputQueue : MonoBehaviour
     void Update()
     {
         if (_collecting)
+        {
             ReadInput();
+            if (_playerInputHandler.DeleateActionInput)
+            {
+                TryDeleteAction();
+            }
+        }
 
         UpdateDebugList();
     }
@@ -68,6 +74,13 @@ public class PlayerInputQueue : MonoBehaviour
         }
 
         _lastInput = input;
+    }
+    private void TryDeleteAction()
+    {
+        if(actionQueue.Count > 0)
+        {
+            actionQueue.Dequeue();
+        }
     }
 
     public IEnumerator ExecuteActions()
