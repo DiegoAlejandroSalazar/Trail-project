@@ -75,11 +75,11 @@ public class PlayerGridMovement : MonoBehaviour
 
         if (_walkLayer.HasTile(targetCell))
         {
-            ExecuteJump(direction);
+            ExecuteMove(direction);
         }
     }
 
-    void ExecuteJump(Vector3Int direction)
+    void ExecuteMove(Vector3Int direction)
     {
         isMoving = true;
         currentCell += direction;
@@ -97,6 +97,8 @@ public class PlayerGridMovement : MonoBehaviour
             _animator.SetTrigger("Moving");
         }
 
+        AudioManager.Instance.PlaySfx("PlayerMove", true, 0.4f);
+        
         transform.DOMove(targetWorldPos, _moveDuration).SetEase(Ease.OutQuad).OnComplete(() =>
         {
             isMoving = false;

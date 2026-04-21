@@ -27,6 +27,8 @@ public class PlayerManager : MonoBehaviour
     }
     public void PlayerDied(GameObject player)
     {
+        AudioManager.Instance.PlaySfx("PlayerDeath", false, 1f);
+
         var data = Players.Find(p => p.GameObject == player);
         if (data == null) return;
 
@@ -56,6 +58,7 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.Log("GAME OVER — abbiamo un vincitore!");
 
+            AudioManager.Instance.PlaySfx("Win", false, 1f);
             GameUIManager.Instance.ShowEndScreen(lastAlive);
         }
     }
@@ -92,8 +95,8 @@ public class PlayerData
 
         if (Trail != null)
             Trail.Init(trailMap, assignedColor);
-        
-        if(InputQueue != null)
+
+        if (InputQueue != null)
             InputQueue.Init(Movement, PlayerInputHandler);
 
 

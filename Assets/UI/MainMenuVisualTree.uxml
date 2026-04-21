@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/MainMenuUss.uss?fileID=7433441132597879392&amp;guid=58c81cff2f97ba549a228934953bb0b8&amp;type=3#MainMenuUss"/>
-    <ui:VisualElement name="Container" style="flex-grow: 1; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0;">
+    <ui:VisualElement name="Container" style="flex-grow: 1; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0; background-image: none;">
         <ui:Label text="Trail" name="GameName" class="header" style="align-self: center;"/>
         <ui:GroupBox style="align-self: center;">
             <ui:Button text="Play" name="PlayButton" class="button"/>

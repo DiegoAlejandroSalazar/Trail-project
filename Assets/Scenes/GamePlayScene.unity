@@ -893,6 +893,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8364446c09180e846844005f199f6312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraManager
+  _baseAmplitude: 0.05
+  _baseFrequency: 1
+  _easyMult: 1
+  _mediumMult: 1.5
+  _hardMult: 2.2
+  _insaneMult: 3
 --- !u!1 &679093002
 GameObject:
   m_ObjectHideFlags: 0
@@ -3504,12 +3510,13 @@ MonoBehaviour:
   _uiContainer: {fileID: 2146663642}
   _playerUIPrefab: {fileID: 7515307544507659739, guid: 66c743b7ce1748d4a861f1605feefff7, type: 3}
   _playerPrefab: {fileID: 7760129106111456453, guid: 146f772315932f1429c0b183796fa506, type: 3}
-  _settings: {fileID: 11400000, guid: cc6cf483af32d93428ce8df897295c94, type: 2}
   _playerColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 0.07817807, b: 0, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _settings: {fileID: 11400000, guid: cc6cf483af32d93428ce8df897295c94, type: 2}
+  _cameraShake: {fileID: 519420033}
   GameFinish: 0
 --- !u!114 &1961603059
 MonoBehaviour:

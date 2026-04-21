@@ -14,6 +14,7 @@ public class PlayerWallet : MonoBehaviour
 
     public void AddCoin(int amount = 1)
     {
+        AudioManager.Instance.PlaySfx("GoldGain", false, 1f);
         Coins += amount;
         UpdateUI();
     }

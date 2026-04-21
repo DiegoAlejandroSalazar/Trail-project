@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -14,12 +13,9 @@ public class MainMenuEvents : MonoBehaviour
     [SerializeField] private VisualTreeAsset _mainMenuTree;
     [SerializeField] private VisualTreeAsset _choosePlayerVisualTree;
 
-    private AudioSource _audioSource;
-
     private void Awake()
     {
         _document = GetComponent<UIDocument>();
-        _audioSource = GetComponent<AudioSource>();
 
         LoadMainMenu();
     }
@@ -48,13 +44,19 @@ public class MainMenuEvents : MonoBehaviour
     }
     private void OnPlayClick(ClickEvent click)
     {
-        _audioSource.Play();
+        AudioManager.Instance.PlaySfx("ButtonClicked", false, 1f);
         LoadChoosePlayerMenu();
     }
 
     private void OnExitClick(ClickEvent click)
     {
+        AudioManager.Instance.PlaySfx("ButtonClicked", false, 1f);
         Application.Quit();
+    }
+    private void OnBackClick()
+    {
+        AudioManager.Instance.PlaySfx("ButtonClicked", false, 1f);
+        LoadMainMenu();
     }
     #endregion
 
@@ -72,11 +74,14 @@ public class MainMenuEvents : MonoBehaviour
         root.Q<Button>("ThreePlayerButton")?.RegisterCallback<ClickEvent>(evt => StartGame(3));
         root.Q<Button>("FourPlayerButton")?.RegisterCallback<ClickEvent>(evt => StartGame(4));
 
-        root.Q<Button>("BackButton")?.RegisterCallback<ClickEvent>(evt => LoadMainMenu());
+        root.Q<Button>("BackButton")?.RegisterCallback<ClickEvent>(evt => OnBackClick());
     }
 
     private void StartGame(int players)
     {
+        AudioManager.Instance.PlaySfx("ButtonClicked", false, 1f);
+        AudioManager.Instance.PlaySfx("SceneTransition", false, 1f);
+
         Debug.Log(players);
         GameManager.PlayerCount = players;
         SceneManager.LoadScene(1);

@@ -18,6 +18,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         _lives -= amount;
 
+        AudioManager.Instance.PlaySfx("DamageTaken", false, 1f);
+
         Debug.Log($"{gameObject.name} ha preso danno! alla posizione {collisionCenter} Vite rimaste: {_lives}");
         UpdateUI();
 

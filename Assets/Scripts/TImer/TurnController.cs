@@ -29,6 +29,7 @@ public class TurnController : MonoBehaviour
     void Update()
     {
         if(GameManager.Instance.GameFinish) return;
+        
         if (!_collecting) return;
 
         _countdown -= Time.deltaTime;

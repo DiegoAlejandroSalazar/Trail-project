@@ -32,10 +32,10 @@ public class FallingObjectManager : MonoBehaviour
     private void ShowWarningTiles()
     {
         if (GameManager.Instance.GameFinish) return;
-            foreach (Vector3Int cell in _currentPattern.cells)
-            {
-                _warningTileMap.SetTile(cell, _waringTile);
-            }
+        foreach (Vector3Int cell in _currentPattern.cells)
+        {
+            _warningTileMap.SetTile(cell, _waringTile);
+        }
     }
     private void ClearTiles()
     {
@@ -46,6 +46,8 @@ public class FallingObjectManager : MonoBehaviour
     }
     public void InitializePattern()
     {
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySfx("StartFallingObject", false, 0.8f);
         ChoosePatternFromDifficulty();
         ShowWarningTiles();
     }
@@ -55,13 +57,16 @@ public class FallingObjectManager : MonoBehaviour
     {
         if (_currentPattern == null)
             return;
+            
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySfx("AttaccoMeteore", false, 0.5f);
 
         foreach (var cell in _currentPattern.cells)
         {
             Vector3 worldPos = _grid.GetCellCenterWorld(cell);
 
             // Spawn oggetto che cade
-            GameObject obj = Instantiate(_fallingObjectPrefab, worldPos + Vector3.up * 5f, Quaternion.identity);
+            GameObject obj = Instantiate(_fallingObjectPrefab, worldPos + Vector3.up * 5f, _fallingObjectPrefab.transform.rotation);
 
             // Animazione caduta
             obj.transform

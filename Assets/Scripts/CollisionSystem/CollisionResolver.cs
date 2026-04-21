@@ -37,6 +37,8 @@ public class CollisionResolver : MonoBehaviour
 
             var ordered = list.OrderBy(x => x.index).ToList();
             var loser = ordered.Last();
+            
+            AudioManager.Instance.PlaySfx("ContattoTrail", false, 0.5f);
 
             loser.player.Damageable?.TakeDamage(1, cell);
         }

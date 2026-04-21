@@ -26,9 +26,6 @@ public class GameManager : MonoBehaviour
     [Header("Player References")]
     [SerializeField] private GameObject _playerPrefab;
 
-    [Header("Difficulty settings")]
-    [SerializeField] private GameDifficultySettings _settings;
-
     [SerializeField]
     private List<Color> _playerColors = new()
     {
@@ -37,7 +34,11 @@ public class GameManager : MonoBehaviour
         Color.green,
         Color.yellow
     };
+    [Header("Difficulty settings")]
+    [SerializeField] private GameDifficultySettings _settings;
 
+    [Header("Camera References")]
+    [SerializeField] private ProgressiveCameraShake _cameraShake;
     public static int PlayerCount { get; set; } = 2;
     public int CurrentTurn { get; private set; } = 1;
     [HideInInspector] public bool GameFinish = false;
@@ -69,9 +70,15 @@ public class GameManager : MonoBehaviour
         Instance = this;
         SpawnPlayers(PlayerCount);
     }
+
+    void Start()
+    {
+        AudioManager.Instance.PlayMusic("GamePlay");
+    }
     public void NextTurn()
     {
         CurrentTurn++;
+        _cameraShake.UpdateIntensityFromDifficulty();
     }
 
     private DifficultyTier GetTier()
@@ -81,6 +88,11 @@ public class GameManager : MonoBehaviour
         if (CurrentTurn <= _settings.HardTurnThreshold) return DifficultyTier.Hard;
         return DifficultyTier.Insane;
     }
+    public DifficultyTier GetDifficultyTier()
+    {
+        return GetTier();
+    }
+
     public string GetDifficultyName()
     {
         return GetTier() switch
@@ -186,4 +198,5 @@ public class GameManager : MonoBehaviour
         float offsetY = (anchor.y == 0) ? margin : -margin;
         rect.anchoredPosition = new Vector2(offsetX, offsetY);
     }
+
 }

@@ -53,6 +53,7 @@ public class GameUIManager : MonoBehaviour
     /// </summary>
     public void OnClickRestart()
     {
+        AudioManager.Instance.PlaySfx("ButtonClicked", false, 1f);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -66,6 +67,7 @@ public class GameUIManager : MonoBehaviour
         {
             Destroy(GameManager.Instance.gameObject);
         }
+        AudioManager.Instance.PlaySfx("ButtonClicked", false, 1f);
 
         SceneManager.LoadScene(0);
     }
