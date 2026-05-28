@@ -21,6 +21,8 @@ public class PlayerWallet : MonoBehaviour
     private void UpdateUI()
     {
         if (CoinText != null)
-            CoinText.text = Coins.ToString();
+	{
+        	CoinText.text = Coins.ToString();
+	}
     }
 }

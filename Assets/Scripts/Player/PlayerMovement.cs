@@ -13,6 +13,8 @@ public class PlayerGridMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float _moveDuration = 0.3f;
 
+    [SerializeField] private AudioClip moveSound;
+
     private Vector3Int currentCell;
     private bool isMoving = false;
     public bool IsFree => !isMoving;
@@ -75,6 +77,7 @@ public class PlayerGridMovement : MonoBehaviour
 
         if (_walkLayer.HasTile(targetCell))
         {
+		MusicManager.instance.PlaySoundFXClip(moveSound,transform,1f);
             ExecuteJump(direction);
         }
     }

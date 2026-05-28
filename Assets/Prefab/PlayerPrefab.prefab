@@ -107,6 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGridMovement
   _grid: {fileID: 0}
   _moveDuration: 0.3
+  moveSound: {fileID: 8300000, guid: 85fd8c46cdd626fbb9e7f33f0e08dd73, type: 3}
 --- !u!114 &4097955128593949863
 MonoBehaviour:
   m_ObjectHideFlags: 0
