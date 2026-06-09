@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 817684415}
   - component: {fileID: 817684417}
   - component: {fileID: 817684419}
+  - component: {fileID: 817684420}
   - component: {fileID: 817684418}
   m_Layer: 0
   m_Name: MainMenu
@@ -189,8 +190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fe0609bedea12144a7fc2f88f8aeebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuEvents
+  mixer: {fileID: 24100000, guid: bb463f930a600d71f924f35d87975231, type: 2}
   _mainMenuTree: {fileID: 9197481963319205126, guid: b720ae2c0760e62459970d70b4b52991, type: 3}
   _choosePlayerVisualTree: {fileID: 9197481963319205126, guid: 59c79b89a43591747a997ada4295ea86, type: 3}
+  _optionVisualTree: {fileID: 9197481963319205126, guid: f58a7479624e617118f120e638a127db, type: 3}
+  ost: {fileID: 8300000, guid: f7bca5612003b82059722dddbe9f8e7c, type: 3}
 --- !u!82 &817684418
 AudioSource:
   m_ObjectHideFlags: 0
@@ -200,7 +204,7 @@ AudioSource:
   m_GameObject: {fileID: 817684414}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 781072802997016823, guid: bb463f930a600d71f924f35d87975231, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4828d361fd739a204a5d2cc34ccedf5d, type: 3}
   m_PlayOnAwake: 0
@@ -304,6 +308,18 @@ MonoBehaviour:
   _opacity: 0.5
   _flickerTime: 2
   _color: {r: 0.8113208, g: 0.7943581, b: 0.746262, a: 1}
+--- !u!114 &817684420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817684414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c86422c310fc2a29f8304cf2521202c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsMenuController
 --- !u!1 &1363339457
 GameObject:
   m_ObjectHideFlags: 0
