@@ -4,9 +4,9 @@ using UnityEngine;
 public class GameDifficultySettings : ScriptableObject
 {
     [Header("Difficulty Threshold")]
-    public int EasyTurnThreshold = 10;
-    public int MediumTurnThreshold = 25;
-    public int HardTurnThreshold = 50;
+    public int EasyTurnThreshold = 5;
+    public int MediumTurnThreshold = 7;
+    public int HardTurnThreshold = 10;
 
 
     [Header("Input Window (seconds)")]
