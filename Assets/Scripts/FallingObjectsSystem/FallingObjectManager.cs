@@ -13,7 +13,6 @@ public class FallingObjectManager : MonoBehaviour
     [SerializeField] private TileBase _waringTile;
     [SerializeField] private GameObject _fallingObjectPrefab;
     private FallingObjectsPatternSO _currentPattern;
-    [SerializeField] private AudioClip audioClip;
     void Awake()
     {
         Instance = this;
@@ -96,7 +95,6 @@ public class FallingObjectManager : MonoBehaviour
             {
                 Debug.Log($"{p.GameObject.name} colpito!");
                 p.Damageable?.TakeDamage(1, cell);
-		MusicManager.instance.PlaySoundFXClip(audioClip, transform, 1f);
             }
         }
     }

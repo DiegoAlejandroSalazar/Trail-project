@@ -12,8 +12,6 @@ public class CoinSpawner : MonoBehaviour
     [Header("Spawn Settings")]
     [SerializeField] private int maxAttempts = 50;
 
-    [SerializeField] private AudioClip coinSound;
-
     private Vector3Int _lastSpawnCell;
 
     void Awake()
@@ -53,7 +51,6 @@ public class CoinSpawner : MonoBehaviour
             Vector3 worldPos = _grid.GetCellCenterWorld(randomCell);
             _coin.position = worldPos;
             StartCoinMovement(worldPos);
-	    MusicManager.instance.PlaySoundFXClip(coinSound,transform,1f);
             return;
         }
 

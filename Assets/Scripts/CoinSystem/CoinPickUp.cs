@@ -3,7 +3,7 @@ using UnityEngine;
 public class CoinPickup : MonoBehaviour
 {
     private CoinSpawner spawner;
- 
+
     void Start()
     {
         spawner = FindFirstObjectByType<CoinSpawner>();

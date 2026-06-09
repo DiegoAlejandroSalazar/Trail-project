@@ -13,8 +13,6 @@ public class PlayerGridMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float _moveDuration = 0.3f;
 
-    [SerializeField] private AudioClip moveSound;
-
     private Vector3Int currentCell;
     private bool isMoving = false;
     public bool IsFree => !isMoving;

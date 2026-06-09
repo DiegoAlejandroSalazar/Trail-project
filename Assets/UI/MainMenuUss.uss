@@ -25,7 +25,7 @@
     border-right-width: 0;
     border-bottom-width: 0;
     border-left-width: 0;
-    background-image: none;
+    background-image: url("project://database/Assets/UI/UiAsset/Sci-fi%20UI.png?fileID=-7003093608280903&guid=ab4224c0c65b41045a6d56adb896ce7e&type=3#Sci-fi UI_22");
     color: rgb(255, 255, 255);
     -unity-text-outline-width: 5px;
     -unity-text-outline-color: rgb(0, 0, 0);

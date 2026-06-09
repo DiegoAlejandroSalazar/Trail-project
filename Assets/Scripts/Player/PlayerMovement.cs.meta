@@ -1,13 +1,2 @@
 fileFormatVersion: 2
 guid: e9556c425fd6a8e44843668f03192af9
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences:
-  - _grid: {instanceID: 0}
-  - moveSound: {fileID: 8300000, guid: 85fd8c46cdd626fbb9e7f33f0e08dd73, type: 3}
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 

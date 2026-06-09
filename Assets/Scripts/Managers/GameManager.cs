@@ -140,24 +140,21 @@ public class GameManager : MonoBehaviour
 
     public FallingObjectsPatternSO GetPattern()
     {
-        //List<FallingObjectsPatternSO> pool = new();
+        List<FallingObjectsPatternSO> pool = new();
 
         // Easy sempre incluso
-        //pool = _settings.easyPatterns;
+        pool.AddRange(_settings.easyPatterns);
 
         if (CurrentTurn > _settings.EasyTurnThreshold)
-            //pool.AddRange(_settings.mediumPatterns);
-        return _settings.easyPatterns[Random.Range(0, _settings.mediumPatterns.Length)];
+            pool.AddRange(_settings.mediumPatterns);
 
         if (CurrentTurn > _settings.MediumTurnThreshold)
-            //pool.AddRange(_settings.hardPatterns);
-        return _settings.hardPatterns[Random.Range(0, _settings.hardPatterns.Length)];
+            pool.AddRange(_settings.hardPatterns);
 
         if (CurrentTurn > _settings.HardTurnThreshold)
-            //pool.AddRange(_settings.insanePatterns);
-        return _settings.insanePatterns[Random.Range(0, _settings.insanePatterns.Length)];
+            pool.AddRange(_settings.insanePatterns);
 
-        return _settings.easyPatterns[Random.Range(0, _settings.easyPatterns.Length)];
+        return pool[Random.Range(0, pool.Count)];
     }
 
     public void SpawnPlayers(int playerCount)
