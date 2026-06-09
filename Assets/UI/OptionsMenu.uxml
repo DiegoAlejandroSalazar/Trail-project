@@ -1,9 +1,9 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/MainMenuUss.uss?fileID=7433441132597879392&amp;guid=58c81cff2f97ba549a228934953bb0b8&amp;type=3#MainMenuUss"/>
     <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
-        <ui:Label text="Options" name="Options" style="align-items: auto; align-self: center;"/>
-        <ui:Slider label="Sound Effects" value="42" high-value="1" name="SoundFXVolume"/>
-        <ui:Slider label="Music" value="42" high-value="1" name="MusicVolume"/>
-        <ui:Button text="Button" name="BackToMenu" style="align-self: center;"/>
+        <ui:Label text="Options" name="Options" class="header" style="align-items: auto; align-self: center;"/>
+        <ui:Slider label="Sound Effects" value="42" high-value="1" name="SoundFXVolume" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Elons.ttf?fileID=12800000&amp;guid=5e941245b78ee2668bb34c351171f663&amp;type=3#Elons&quot;); font-size: 30px;"/>
+        <ui:Slider label="Music" value="42" high-value="1" name="MusicVolume" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/Elons.ttf?fileID=12800000&amp;guid=5e941245b78ee2668bb34c351171f663&amp;type=3#Elons&quot;); font-size: 30px;"/>
+        <ui:Button text="Button" name="BackToMenu" class="button" style="align-self: center; -unity-background-image-tint-color: rgb(141, 171, 148);"/>
     </ui:VisualElement>
 </ui:UXML>

@@ -9,7 +9,7 @@ using UnityEngine.Audio;
 public class MainMenuEvents : MonoBehaviour
 {
     private UIDocument _document;
-    [SerializeField]private AudioMixer mixer;
+    [SerializeField] private AudioMixer mixer;
 
     [Header("Visual Trees")]
     [SerializeField] private VisualTreeAsset _mainMenuTree;
@@ -91,39 +91,42 @@ public class MainMenuEvents : MonoBehaviour
     {
         _document.visualTreeAsset = _optionVisualTree;
         var root = _document.rootVisualElement;
-	
-	Slider slider1 = root.Q<Slider>("SoundFXVolume");  
-	Slider slider2 = root.Q<Slider>("MusicVolume");  
+        
+        GetComponent<HeaderEffects>().RefreshHeaders();
+
+
+        Slider slider1 = root.Q<Slider>("SoundFXVolume");
+        Slider slider2 = root.Q<Slider>("MusicVolume");
 
         slider1.RegisterValueChangedCallback(evt =>
         {
-	SetMixerVolume("AudioFXVolume", evt.newValue);
+            SetMixerVolume("AudioFXVolume", evt.newValue);
             Debug.Log("AudioFXVolume : " + evt.newValue);
         });
 
         slider2.RegisterValueChangedCallback(evt =>
         {
-	SetMixerVolume("MusicaVolume", evt.newValue);
+            SetMixerVolume("MusicaVolume", evt.newValue);
             Debug.Log("MusicVolume: " + evt.newValue);
         });
 
         root.Q<Button>("BackToMenu")?.RegisterCallback<ClickEvent>(evt => LoadMainMenu());
     }
 
-	private void SetMixerVolume(string exposedParam, float sliderValue)
-{
-// Evita log(0)
-    if (sliderValue <= 0.0001f)
+    private void SetMixerVolume(string exposedParam, float sliderValue)
     {
-        mixer.SetFloat(exposedParam, -80f); // muto
-        return;
+        // Evita log(0)
+        if (sliderValue <= 0.0001f)
+        {
+            mixer.SetFloat(exposedParam, -80f); // muto
+            return;
+        }
+
+        // Conversione lineare → decibel
+        float dB = Mathf.Log10(sliderValue) * 20f;
+
+        mixer.SetFloat(exposedParam, dB);
     }
-
-    // Conversione lineare → decibel
-    float dB = Mathf.Log10(sliderValue) * 20f;
-
-    mixer.SetFloat(exposedParam, dB);
-}
 
 
     private void StartGame(int players)

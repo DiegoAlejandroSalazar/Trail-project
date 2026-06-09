@@ -13,6 +13,8 @@ public class PlayerGridMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float _moveDuration = 0.3f;
 
+    [SerializeField] private AudioClip moveSound;
+
     private Vector3Int currentCell;
     private bool isMoving = false;
     public bool IsFree => !isMoving;
@@ -97,7 +99,7 @@ public class PlayerGridMovement : MonoBehaviour
             _animator.SetTrigger("Moving");
         }
 
-        AudioManager.Instance.PlaySfx("PlayerMove", true, 0.4f);
+        AudioManager.Instance.PlaySfx("PlayerMove", true, 0.8f);
         
         transform.DOMove(targetWorldPos, _moveDuration).SetEase(Ease.OutQuad).OnComplete(() =>
         {

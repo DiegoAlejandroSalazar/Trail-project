@@ -711,7 +711,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.9427508, g: 1, b: 0, a: 1}
@@ -786,7 +786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 400041f016f677c4db4faa136bd2badb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinMovement
-  floatAmplitude: 0.1
+  floatAmplitude: 0.2
   floatDuration: 1.5
 --- !u!1 &519420028
 GameObject:
@@ -3383,6 +3383,111 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1839731708}
   m_CullTransparentMesh: 1
+--- !u!1 &1858422711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1858422713}
+  - component: {fileID: 1858422712}
+  - component: {fileID: 1858422714}
+  m_Layer: 0
+  m_Name: BackGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1858422712
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858422711}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -1
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: -4078772407203759018, guid: 3743d2db469d869e1904918e9643d225, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 25.6, y: 16}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+--- !u!4 &1858422713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858422711}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4, z: -6}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1858422714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858422711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4acba32bb656361bfb459e5f464b98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::bounce
+  speed: 1
 --- !u!1 &1961603050
 GameObject:
   m_ObjectHideFlags: 0
@@ -3399,6 +3504,7 @@ GameObject:
   - component: {fileID: 1961603055}
   - component: {fileID: 1961603057}
   - component: {fileID: 1961603058}
+  - component: {fileID: 1961603060}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -3436,7 +3542,8 @@ MonoBehaviour:
   _grid: {fileID: 58923841}
   _walkableLayer: {fileID: 1076924073}
   _coin: {fileID: 453914208}
-  maxAttempts: 50
+  maxAttempts: 5
+  coinSound: {fileID: 8300000, guid: c023966f4e0a5f7888bdfa4456535e38, type: 3}
 --- !u!114 &1961603054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3491,6 +3598,7 @@ MonoBehaviour:
   _warningTileMap: {fileID: 2106512259}
   _waringTile: {fileID: 11400000, guid: a331992d1be2c2e41b7170a12f4741c9, type: 2}
   _fallingObjectPrefab: {fileID: 3137510993752140816, guid: 14cb218422e705a409fe106a7c916ca2, type: 3}
+  audioClip: {fileID: 8300000, guid: f06f4303b1f19ae43a3e2225eea6af7b, type: 3}
 --- !u!114 &1961603058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3536,6 +3644,19 @@ MonoBehaviour:
   _totalTurnText: {fileID: 1367713077}
   _totalCoinText: {fileID: 679093004}
   _difficultyText: {fileID: 1769084993}
+--- !u!114 &1961603060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961603050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f613cf5c055b4a1ffa1f9d8c4736924b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicManager
+  soundFXObject: {fileID: 2771965734494204013, guid: 9bf0843a9998ac2fa850d30b677cbe3f, type: 3}
 --- !u!1 &2106512255
 GameObject:
   m_ObjectHideFlags: 0
@@ -3802,3 +3923,4 @@ SceneRoots:
   - {fileID: 58923842}
   - {fileID: 1204151684}
   - {fileID: 453914208}
+  - {fileID: 1858422713}
