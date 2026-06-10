@@ -7,7 +7,7 @@ public class PlayerUIDisplay : MonoBehaviour
     [SerializeField] private TMP_Text _playerName;
     [SerializeField] private TMP_Text _playerHealth;
     [SerializeField] private TMP_Text _playerGold;
-    [SerializeField] private TMP_Text _playerDebug;
+    [SerializeField] private TextMeshProUGUI _playerDebug;
 
     public void SetUpUi(PlayerData player, Color color)
     {

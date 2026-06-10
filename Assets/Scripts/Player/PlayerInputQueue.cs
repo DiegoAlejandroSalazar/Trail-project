@@ -77,7 +77,7 @@ public class PlayerInputQueue : MonoBehaviour
     }
     private void TryDeleteAction()
     {
-        if(actionQueue.Count > 0)
+        if (actionQueue.Count > 0)
         {
             actionQueue.Dequeue();
         }
@@ -120,10 +120,11 @@ public class PlayerInputQueue : MonoBehaviour
         string s = "";
         foreach (var a in actionQueue)
         {
-            if (a.x == 1) s += "→ ";
-            else if (a.x == -1) s += "← ";
-            else if (a.y == 1) s += "↑ ";
-            else if (a.y == -1) s += "↓ ";
+            if (a.x == 1) s += "↗ ";
+            else if (a.x == -1) s += "↙ ";
+            else if (a.y == 1) s += "↖ ";
+            else if (a.y == -1) s += "↘ ";
+            Debug.Log(a.x + " " + a.y);
         }
 
         DebugQueueText.text = s;
